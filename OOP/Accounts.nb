@@ -1,0 +1,395 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 3.0,
+MathReader 3.0, or any compatible application. The data for the notebook 
+starts with the line of stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      7387,        263]*)
+(*NotebookOutlinePosition[      8470,        300]*)
+(*  CellTagsIndexPosition[      8426,        296]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+
+Cell[CellGroupData[{Cell[TextData["Accounts"], "Title",
+  Evaluatable->False,
+  AspectRatioFixed->True,
+  FontFamily->"Times"],
+
+Cell[TextData["Roman E. Maeder"], "Subtitle",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[TextData[{
+  StyleBox[
+  "This notebook shows the use of the package Classes.m. The example is taken \
+from my article in the ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["Mathematica",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontSlant->"Italic"],
+  StyleBox[" Journal, Vol. 3, No. 1.",
+    Evaluatable->False,
+    AspectRatioFixed->True]
+}], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[CellGroupData[{Cell[TextData["Setup"], "Section",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[TextData[{
+  StyleBox["You may have to set ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["$Path",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  StyleBox[" first.",
+    Evaluatable->False,
+    AspectRatioFixed->True]
+}], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[TextData["Needs[\"Classes`\"]"], "Input",
+  InitializationCell->True,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["Simple Accounts"], "Section",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[TextData[{
+  StyleBox["An account is created by a call to the factory method ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["new",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  StyleBox[". It in turn will call the method ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["new",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  StyleBox[
+  " of its superclass. This is recommended to make sure that the object is \
+properly initialized, even if we know (by peeking at the implementation) that \
+the default implementation for ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["new",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  StyleBox[" in class ",
+    Evaluatable->False,
+    AspectRatioFixed->True],
+  StyleBox["Object",
+    Evaluatable->False,
+    AspectRatioFixed->True,
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  StyleBox[" does nothing.",
+    Evaluatable->False,
+    AspectRatioFixed->True]
+}], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[CellGroupData[{Cell[TextData[
+"Class[ Account, Object,\n       {bal, own},\n       {\n        {new,      \
+(new[super]; bal = #1; own = #2)&},\n        {balance,  bal&},\n        \
+{deposit,  Function[bal += #1]},\n        {withdraw, Function[bal -= #1]},\n  \
+      {owner,    own&}\n       }\n]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+Account\
+\>", "\<\
+Account\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[TextData[
+"Here, we create an account . The return value is an opaque type."], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[CellGroupData[{Cell[TextData["a1 = new[Account, 100, \"Roman E. Maeder\"]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+Classes`Private`Account[bal$5, own$5]\
+\>", 
+"\<\
+-Account-\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[TextData["Methods are called like ordinary functions."], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[CellGroupData[{Cell[TextData["balance[a1]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+100\
+\>", "\<\
+100\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["deposit[a1, 50]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+150\
+\>", "\<\
+150\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["A Subclass"], "Section",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[TextData[
+"This subclass inherits most methods and all instance variables from its \
+superclass. The method for withdrawing amounts is overridden, to check that \
+the balance is sufficient. If it is we call the same method form the \
+superclass, otherwise we print an error message."], "Text",
+  Evaluatable->False,
+  AspectRatioFixed->True],
+
+Cell[CellGroupData[{Cell[TextData[
+"Class[ NoCreditAccount, Account,\n\t{},\n\t{\n\t {withdraw, Function[ If[ \
+balance[self] < #1,\n\t                          Print[\"cannot withdraw \", \
+#1],\n\t                          withdraw[super, #1] ]\n\t                   \
+ ]}\n\t}\n]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+NoCreditAccount\
+\>", 
+"\<\
+NoCreditAccount\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["b1 = new[NoCreditAccount, 1000, \"Stephen Wolfram\"]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+Classes`Private`NoCreditAccount[bal$8, own$8]\
+\>", 
+"\<\
+-NoCreditAccount-\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["withdraw[b1, 1100]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[TextData["cannot withdraw 1100"], "Print",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]],
+
+Cell[CellGroupData[{Cell[TextData["withdraw[b1, 900]"], "Input",
+  AspectRatioFixed->True],
+
+Cell[OutputFormData["\<\
+100\
+\>", "\<\
+100\
+\>"], "Output",
+  Evaluatable->False,
+  AspectRatioFixed->True]}, Open]]}, Open]]}, Open]]
+},
+FrontEndVersion->"Macintosh 3.0",
+ScreenRectangle->{{0, 640}, {0, 460}},
+AutoGeneratedPackage->None,
+WindowToolbars->{},
+CellGrouping->Manual,
+WindowSize->{520, 365},
+WindowMargins->{{28, Automatic}, {30, Automatic}},
+PrivateNotebookOptions->{"ColorPalette"->{RGBColor, -1}},
+ShowCellLabel->True,
+ShowCellTags->False,
+RenderingOptions->{"ObjectDithering"->True,
+"RasterDithering"->False},
+MacintoshSystemPageSetup->"\<\
+AVU/IFiQKFD000000V8nh09RAj0000000OXQ<097PXP0AP1Y06`0I@1^0642HSkP
+0V97`0000001nR4@0TN2R000000000000000009R?^0000000000000000000000
+00000000000000000000000000000000\>"
+]
+
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1731, 51, 106, 3, 70, "Title",
+  Evaluatable->False],
+Cell[1840, 56, 93, 2, 70, "Subtitle",
+  Evaluatable->False],
+Cell[1936, 60, 441, 15, 70, "Text",
+  Evaluatable->False],
+
+Cell[CellGroupData[{
+Cell[2400, 77, 82, 2, 70, "Section",
+  Evaluatable->False],
+Cell[2485, 81, 361, 14, 70, "Text",
+  Evaluatable->False],
+Cell[2849, 97, 100, 2, 70, "Input",
+  InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[2981, 101, 92, 2, 70, "Section",
+  Evaluatable->False],
+Cell[3076, 105, 1205, 41, 70, "Text",
+  Evaluatable->False],
+
+Cell[CellGroupData[{
+Cell[4304, 148, 319, 5, 70, "Input"],
+Cell[4626, 155, 116, 6, 70, "Output",
+  Evaluatable->False]
+}, Open  ]],
+Cell[4754, 163, 139, 3, 70, "Text",
+  Evaluatable->False],
+
+Cell[CellGroupData[{
+Cell[4916, 168, 96, 1, 70, "Input"],
+Cell[5015, 171, 149, 7, 70, "Output",
+  Evaluatable->False]
+}, Open  ]],
+Cell[5176, 180, 117, 2, 70, "Text",
+  Evaluatable->False],
+
+Cell[CellGroupData[{
+Cell[5316, 184, 64, 1, 70, "Input"],
+Cell[5383, 187, 108, 6, 70, "Output",
+  Evaluatable->False]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5523, 195, 68, 1, 70, "Input"],
+Cell[5594, 198, 108, 6, 70, "Output",
+  Evaluatable->False]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[5743, 206, 87, 2, 70, "Section",
+  Evaluatable->False],
+Cell[5833, 210, 346, 6, 70, "Text",
+  Evaluatable->False],
+
+Cell[CellGroupData[{
+Cell[6202, 218, 300, 5, 70, "Input"],
+Cell[6505, 225, 133, 7, 70, "Output",
+  Evaluatable->False]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6670, 234, 105, 1, 70, "Input"],
+Cell[6778, 237, 165, 7, 70, "Output",
+  Evaluatable->False]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6975, 246, 71, 1, 70, "Input"],
+Cell[7049, 249, 95, 2, 70, "Print",
+  Evaluatable->False]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7176, 253, 70, 1, 70, "Input"],
+Cell[7249, 256, 108, 6, 70, "Output",
+  Evaluatable->False]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
