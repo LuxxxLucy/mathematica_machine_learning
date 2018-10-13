@@ -3,7 +3,12 @@
     Implement Neural Style Transfer Algorithm
     Gatys et al. "A Neural Algorithm of Artistic Style"
     much of the code is based on the official tutorial
-    see https://reference.wolfram.com/language/tutorial/NeuralNetworksComputerVision.html
+    However there is some critical issues that makes it not working.
+    So I modified the code to make it work.
+    And also organize the code for a cleaner structure.
+
+    see https://reference.wolfram.com/language/tutorial/NeuralNetworksComputerVision.html for the original tutorial.
+
 
     Organized and rewrite by Jialin Lu https://luxxxlucy.github.io
 *)
@@ -97,7 +102,8 @@ StyleTranfer[contentImg_,styleImg_,featureNet_,lossSpec_] :=
                 "StyleFeature" -> {extractFeatures[styleImg]}
             |>;
         net = createTransferNet[featureNet, contentImg, Dimensions@First@trainingdata["StyleFeature"]];
-        perPixel = 1/(3*Apply[Times, ImageDimensions[contentImg]]);
+        (* perPixel = 1/(3*Apply[Times, ImageDimensions[contentImg]]); *)
+        (* lossSpec[[""]] *)
         trainedNet =
             NetTrain[
                         net,
