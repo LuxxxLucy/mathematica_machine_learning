@@ -11,6 +11,8 @@ One focus may be the visualizaitons and intepretations.
 ## Content
 
 - **StyleTransfer**: Implement Neural Style Transfer Algorithm.
+- **DeepDream**: Deep Dream Algorithm.
 - **LeNet**:perhaps the most simple intro to machine learning. Not much fun.
 - **Baisc_Math_Cmd**: basic math functions as snippet.
+- **Baisc_Visual**: basic visualization functions as snippet.
 - **AE**: Autoencoder
